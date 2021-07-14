@@ -103,11 +103,9 @@ namespace Zjazd5
 
         private bool CheckUser()
         {
-            for (int i = 0; i < Users.Count; i++)
-            {
-                if (textBoxLog.Text == Users[i].Login && textBoxLogPass.Text == Users[i].Password) return true;
-            }
-            return false;
+            var check = Users.ToList().Where(x => x.Login == textBoxLog.Text && x.Password == textBoxLogPass.Text);
+            if (check.ToList().Capacity > 0) return true;
+            else return false;
         }
     }
 }
